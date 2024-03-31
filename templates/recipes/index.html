@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Рецепты {% endblock %}
+
+{% block content %}
+    {% for recipe in random_recipes %}
+        <a href="{% url 'recipes:recipe_review' recipe.id %}">{{ recipe }}</a><br>
+        <img src="{{ recipe.image.url }}">
+    {% endfor %}
+{% endblock %}
