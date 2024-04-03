@@ -11,6 +11,18 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-  {% block content %} Content {% endblock %}
+{% include 'navbar.html' %}
+<div class="container">
+  {% block content %}
+
+  Content
+
+  {% endblock %}
+    </div>
+<footer class="text-center">
+    <p>
+        Recepts site by student Andrey Kochetkov
+    </p>
+</footer>
 </body>
 </html>

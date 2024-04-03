@@ -3,8 +3,18 @@
 {% block title %} Рецепты {% endblock %}
 
 {% block content %}
-    {% for recipe in random_recipes %}
-        <a href="{% url 'recipes:recipe_review' recipe.id %}">{{ recipe }}</a><br>
-        <img src="{{ recipe.image.url }}">
-    {% endfor %}
+<div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+        {% for recipe in random_recipes %}
+        <div class="card m-3" style="width: 15rem;">
+           <img src="{{ recipe.image.url }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.title }}</h5>
+                <p class="card-text">{{ recipe.description|truncatechars:5 }}</p>
+                <a href="{% url 'recipes:recipe_review' recipe.id %}" class="btn btn-secondary">Открыть</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
