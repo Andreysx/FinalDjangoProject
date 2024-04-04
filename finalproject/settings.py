@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,13 +20,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sf_+)h#v8ln9qfo_e8#axpawm@2uy_4+xby)!@ujs2#jwv0tm*'
+# SECRET_KEY = 'django-insecure-sf_+)h#v8ln9qfo_e8#axpawm@2uy_4+xby)!@ujs2#jwv0tm*'
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    'andreykasx.pythonanywhere.com',
 ]
 
 INTERNAL_IPS = [
@@ -84,8 +92,18 @@ WSGI_APPLICATION = 'finalproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'andreykasx$default',
+        'USER': 'andreykasx',
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': 'andreykasx.mysql.pythonanywhere-services.com',
+        'OPTIONS': {
+            'init_command': "SET NAMES 'utf8mb4';SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        },
+
+
+
     }
 }
 
@@ -134,7 +152,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
 
 LOG_FILE_PATH = BASE_DIR / 'log'
 LOG_FILE_PATH.mkdir(exist_ok=True)
