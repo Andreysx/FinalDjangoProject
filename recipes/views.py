@@ -14,10 +14,6 @@ def index(request):
         random_recipes.append(random.choice(recipes))
     return render(request, 'recipes/index.html', {'random_recipes': random_recipes})
 
-# def index(request):
-#     recipes = Recipe.objects.order_by('?')[:5]
-#     return render(request, 'recipes/index.html', {'recipes': recipes})
-
 
 def recipe_review(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
@@ -52,7 +48,6 @@ def make_recipe(request):
         return redirect('login')
 
 
-# @login_required
 def update_recipe(request, recipe_id):
     if request.user.is_authenticated:
         message = 'Ошибка данных'

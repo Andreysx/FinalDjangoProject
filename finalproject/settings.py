@@ -134,6 +134,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
+LOGIN_REDIRECT_URL = '/'
+
 LOG_FILE_PATH = BASE_DIR / 'log'
 LOG_FILE_PATH.mkdir(exist_ok=True)
 LOGGING = {
