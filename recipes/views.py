@@ -8,11 +8,11 @@ from .forms import RecipeForm
 
 
 def index(request):
-    recipes = Recipe.objects.all()
-    random_recipes = []
-    for i in range(5):
-        random_recipes.append(random.choice(recipes))
-    return render(request, 'recipes/index.html', {'random_recipes': random_recipes})
+    recipes = Recipe.objects.order_by('?')[:5]
+    # random_recipes = []
+    # for i in range(5):
+    #     random_recipes.append(random.choice(recipes))
+    return render(request, 'recipes/index.html', {'random_recipes': recipes})
 
 
 def recipe_review(request, recipe_id):
