@@ -59,6 +59,7 @@
 6. Запустите сервер разработки Django:
 
     ```bash
+   
     python manage.py runserver
     ```
 
